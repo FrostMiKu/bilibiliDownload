@@ -14,7 +14,7 @@ def http_get(av):
 	return html.read()
 	
 #正则匹配AV号输入格式是否正确
-def is_AV(av):
+def is_av(av):
 	x = re.match(r'[0-9]+',av)
 	if x:
 		return x.group(0)
@@ -52,7 +52,7 @@ def download(url):
 	urllib.urlretrieve(url,savepath,callbackfunc)
 
 #起始位置
-av = is_AV(raw_input('请输入AV号，仅数字: '))
+av = is_av(raw_input('请输入AV号，仅数字: '))
 #解析json获取视频链接
 js = http_get(av)
 jsl = json.loads(js)
