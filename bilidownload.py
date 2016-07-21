@@ -31,19 +31,24 @@ def callbackfunc(blocknum, blocksize, totalsize):
     '''
     percent = 100.0 * blocknum * blocksize / totalsize
     if percent > 100:
-        percent = 100
-    print "%.2f%%"% percent
+		percent = 100
+		print("%.2f%%" %percent)
+		print('done!')
+		return 0
+    print("%.2f%%" %percent)
 
 #下载视频
 def download(url):
 	#创建保存视频的目录
-	if (os.path.exists('Videos')== False):
+	if os.path.exists('Videos') == False:
 		os.mkdir('Videos')
-	#获取视频名称
+	#获取视频格式
 	name1 = url[:url.index('?')]
-	name2 = name1.replace(name1[:name1.rindex('/')+1],'')
+	name2 = name1.replace(name1[:name1.rindex('.')],'')
+	#以AV号命名视频
+	name = 'AV' + av + name2
 	#下载
-	savepath = 'Videos/'+name2
+	savepath = 'Videos/'+name
 	urllib.urlretrieve(url,savepath,callbackfunc)
 
 #起始位置
@@ -56,3 +61,4 @@ size = jsl["url"][0]["size"]/(1024*1024)
 print(u'视频大小:%s MB，请按任意键下载' %size)
 raw_input()
 download(link)
+
