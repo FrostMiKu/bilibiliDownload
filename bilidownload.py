@@ -11,9 +11,7 @@ import json,urllib,os,sys,re
 def http_get(av):
 	url = 'https://api.kaaass.net/biliapi/video?id='+av
 	html = urllib.urlopen(url)
-	link = html.read()
-	html.close()
-	return link
+	return html.read()
 	
 #正则匹配AV号输入格式是否正确
 def is_AV(av):
@@ -58,4 +56,3 @@ size = jsl["url"][0]["size"]/(1024*1024)
 print(u'视频大小:%s MB，请按任意键下载' %size)
 raw_input()
 download(link)
-
